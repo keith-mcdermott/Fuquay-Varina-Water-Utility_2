@@ -1,11 +1,15 @@
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 1rem; /* Equivalent to 16px by default */
-  font-weight: 400; /* Normal */
+  font-size: 1rem;
+  /* Equivalent to 16px by default */
+  font-weight: 400;
+  /* Normal */
   line-height: 1.5;
-  color: #212529; /* Dark gray */
+  color: #212529;
+  /* Dark gray */
   text-align: left;
 }
 
@@ -63,10 +67,24 @@ body, html {
 }
 
 .maplibregl-popup-content .btn {
+  all: unset;
   display: inline-block;
+  padding: 0.375rem 0.75rem;
   font-size: 0.875rem;
-  padding: 0.25rem 0.75rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  background-color: #0d6efd;
+  border: 1px solid #0d6efd;
+  border-radius: 0.25rem;
+  cursor: pointer;
 }
+
+.maplibregl-popup-content .btn:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
 
 @media (max-width: 992px) {
   #map-title {
