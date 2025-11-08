@@ -213,7 +213,7 @@ function init() {
       <strong>Status:</strong> ${props.open_stat || 'Unknown'}<br>
       <strong>Installation Date:</strong> ${formatDate(props.install_date)}<br>
       <strong>Operable:</strong> ${props.operable || 'Unknown'}<br><br>
-      <button id="routeButton">Get Directions</button>
+      <button id="routeButton" class="btn btn-primary">Get Directions</button>
       <div id="directions" style="margin-top:10px;max-height:150px;overflow:auto;font-size:13px;"></div>
     `;
     } else if (layerType === 'service') {
@@ -225,7 +225,7 @@ function init() {
       <strong>Status:</strong> ${props.status || 'Unknown'}<br>
       <strong>Installation Date:</strong> ${formatDate(props.install_date)}<br>
       <strong>Average Annual Usage:</strong> ${props.avg_use || 'Unknown'}<br><br>
-      <button id="routeButton">Get Directions</button>
+      <button id="routeButton" class="btn btn-primary">Get Directions</button>
       <div id="directions" style="margin-top:10px;max-height:150px;overflow:auto;font-size:13px;"></div>
     `;
     } else if (layerType === 'line') {
@@ -351,25 +351,28 @@ function init() {
   map.on('click', 'service-connections-layer', e => showPopup(e, 'service'));
   map.on('click', 'water-lines-layer', e => showPopup(e, 'line'));
 
-
-  document.getElementById("openbtn").onclick = openNav;
-  function openNav() {
-    document.getElementById("mySidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-  }
-  document.getElementById("closebtn").onclick = closeNav;
-  function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-  }
-
   function setupSearch() {
     const searchInput = document.getElementById('valveSearch');
     const suggestionsList = document.getElementById('valveSuggestions');
+    const clearBtn = document.getElementById('clearSearch'); // ✅ Safe here
+
+
     if (!searchInput || !suggestionsList) {
       console.warn("Search box elements not found.");
       return;
     }
+
+    // --- Show/hide clear button ---
+    searchInput.addEventListener('input', () => {
+      clearBtn.style.display = searchInput.value ? 'inline-block' : 'none';
+    });
+
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      suggestionsList.innerHTML = '';
+      clearBtn.style.display = 'none';
+      searchInput.focus();
+    });
 
     // --- Listen for typing ---
     searchInput.addEventListener('input', () => {
@@ -437,5 +440,5 @@ function init() {
     const e = { features: [feature] };
     showPopup(e, type);
   }
-  
+
 }

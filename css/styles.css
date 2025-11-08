@@ -1,25 +1,23 @@
-body {
+body, html {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem; /* Equivalent to 16px by default */
+  font-weight: 400; /* Normal */
+  line-height: 1.5;
+  color: #212529; /* Dark gray */
+  text-align: left;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-}
-
+/* Map Layout */
 #map-container {
   position: relative;
-  /* Set the parent container for absolute positioning */
   height: 100vh;
-  /* Set a specific size for the map */
   width: 100vw;
 }
 
 #map {
   position: absolute;
-  /* Allows other elements to overlap */
   top: 0;
   bottom: 0;
   width: 100%;
@@ -27,121 +25,52 @@ body {
 
 #map-title {
   position: absolute;
-  /* Positions the title relative to #map-container */
   top: 10px;
-  /* Adjust top/left for desired position */
   left: 50%;
   transform: translateX(-50%);
-  /* Centers the title horizontally */
-  z-index: 1;
-  /* Ensures the title is on top of the map */
+  z-index: 10;
   background-color: rgba(255, 255, 255, 0.7);
-  /* Optional: Semi-transparent background for readability */
-  padding: 5px 15px;
+  padding: 6px 15px;
   border-radius: 5px;
-  font-size: 24px;
-}
-
-.sidebar {
-  position: absolute;
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  background-color: white;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.sidebar a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidebar a:hover {
-  color: #f1f1f1;
-}
-
-.sidebar .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-.openbtn {
-  position: absolute;
   font-size: 20px;
-  cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
-  border: none;
+  font-weight: bold;
 }
 
-.openbtn:hover {
-  background-color: #444;
-}
-
-#main {
-  transition: margin-left .5s;
-  padding: 16px;
-}
+/* Offcanvas Search Styling */
 #searchBoxContainer {
-  padding: 10px;
+  position: relative;
 }
 
-#valveSearch {
-  width: 90%;
-  padding: 6px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.suggestions-list {
-  list-style: none;
-  padding: 0;
-  margin: 4px 0 0;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  max-height: 150px;
+#valveSuggestions {
+  max-height: 200px;
   overflow-y: auto;
 }
 
-.suggestions-list li {
-  padding: 6px 8px;
+#valveSuggestions li {
   cursor: pointer;
 }
 
-.suggestions-list li:hover {
+#valveSuggestions li:hover {
   background-color: #007bff;
-  color: white;
+  color: #fff;
 }
 
-
+/* Legend control fixed on map */
 .maplibregl-ctrl.legend-control {
   position: fixed;
   bottom: 50px;
   right: 0;
 }
 
-@media only screen and (max-width: 992px) {
+.maplibregl-popup-content .btn {
+  display: inline-block;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+}
+
+@media (max-width: 992px) {
   #map-title {
-    top: 65px;
-    font-size: 16;
-    width: 60%;
-    text-align: center;
+    font-size: 16px;
+    width: 80%;
   }
-
-
 }
