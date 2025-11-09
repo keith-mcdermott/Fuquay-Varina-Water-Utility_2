@@ -14,36 +14,36 @@ function init() {
   map.getCanvas().style.cursor = 'default';
 
   // --- Geocoder Control ---
-  const geocoderApi = {
-    forwardGeocode: async (config) => {
-      const features = [];
-      try {
-        const request =
-          `https://nominatim.openstreetmap.org/search?q=${config.query}&format=geojson&polygon_geojson=1&addressdetails=1`;
-        const response = await fetch(request);
-        const geojson = await response.json();
-        for (const feature of geojson.features) {
-          const center = [
-            feature.bbox[0] + (feature.bbox[2] - feature.bbox[0]) / 2,
-            feature.bbox[1] + (feature.bbox[3] - feature.bbox[1]) / 2
-          ];
-          features.push({
-            type: 'Feature',
-            geometry: { type: 'Point', coordinates: center },
-            place_name: feature.properties.display_name,
-            properties: feature.properties,
-            text: feature.properties.display_name,
-            place_type: ['place'],
-            center
-          });
-        }
-      } catch (e) {
-        console.error(`Failed geocode: ${e}`);
-      }
-      return { features };
-    }
-  };
-  map.addControl(new MaplibreGeocoder(geocoderApi, { maplibregl }));
+  // const geocoderApi = {
+  //   forwardGeocode: async (config) => {
+  //     const features = [];
+  //     try {
+  //       const request =
+  //         `https://nominatim.openstreetmap.org/search?q=${config.query}&format=geojson&polygon_geojson=1&addressdetails=1`;
+  //       const response = await fetch(request);
+  //       const geojson = await response.json();
+  //       for (const feature of geojson.features) {
+  //         const center = [
+  //           feature.bbox[0] + (feature.bbox[2] - feature.bbox[0]) / 2,
+  //           feature.bbox[1] + (feature.bbox[3] - feature.bbox[1]) / 2
+  //         ];
+  //         features.push({
+  //           type: 'Feature',
+  //           geometry: { type: 'Point', coordinates: center },
+  //           place_name: feature.properties.display_name,
+  //           properties: feature.properties,
+  //           text: feature.properties.display_name,
+  //           place_type: ['place'],
+  //           center
+  //         });
+  //       }
+  //     } catch (e) {
+  //       console.error(`Failed geocode: ${e}`);
+  //     }
+  //     return { features };
+  //   }
+  // };
+  // map.addControl(new MaplibreGeocoder(geocoderApi, { maplibregl }));
 
   // --- Navigation & Scale Controls ---
   map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-right');
@@ -350,7 +350,7 @@ function init() {
   map.on('click', 'valves-layer', e => showPopup(e, 'valve'));
   map.on('click', 'service-connections-layer', e => showPopup(e, 'service'));
   map.on('click', 'water-lines-layer', e => showPopup(e, 'line'));
-  
+
   function setupSearch() {
     const searchInput = document.getElementById('valveSearch');
     const suggestionsList = document.getElementById('valveSuggestions');
