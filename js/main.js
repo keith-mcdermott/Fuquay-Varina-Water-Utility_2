@@ -239,7 +239,7 @@ function init() {
       <strong>Leak Count:</strong> ${props.leak_count || 'Unknown'}<br>
     `;
     }
-
+    console.log(html)
     // --- Create and add popup ---
     const popup = new maplibregl.Popup({ offset: 25 })
       .setLngLat(coords)
@@ -350,7 +350,7 @@ function init() {
   map.on('click', 'valves-layer', e => showPopup(e, 'valve'));
   map.on('click', 'service-connections-layer', e => showPopup(e, 'service'));
   map.on('click', 'water-lines-layer', e => showPopup(e, 'line'));
-
+  
   function setupSearch() {
     const searchInput = document.getElementById('valveSearch');
     const suggestionsList = document.getElementById('valveSuggestions');
